@@ -16,7 +16,8 @@
     "module": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@theme/*": ["app/shared/theme/*"]
+      "@styles/*": ["app/shared/styles/*"],
+      "@shared/*": ["app/shared/*"]
     }
   },
   "angularCompilerOptions": {
