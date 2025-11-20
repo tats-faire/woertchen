@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+@use "sass:meta"
+
+@layer reset, defaults, overrides;
+
+@layer reset
+  @include meta.load-css("app/shared/styles/reset.css")

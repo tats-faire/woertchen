@@ -31,7 +31,12 @@
             ],
             "styles": [
               "src/styles.sass"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/app/shared/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {
