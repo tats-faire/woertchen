@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RandomPhraseApiService} from '../../api/random-phrase-api.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -6,6 +7,19 @@ import { Component } from '@angular/core';
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.sass',
 })
-export class LandingPage {
+export class LandingPage implements OnInit {
+  heroPhrase: string | undefined
 
+  constructor(private randomPhraseApiService: RandomPhraseApiService) {}
+
+  ngOnInit() {
+    this.randomPhraseApiService.getRandomPhrases(4).subscribe({
+      next: (data) => {
+        this.heroPhrase = data.join("-")
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
 }
