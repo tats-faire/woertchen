@@ -1,3 +1,5 @@
+@use 'colors' as *
+
 .button,
 button,
 input[type="submit"],
@@ -17,8 +19,10 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus
-  color: #333
-  border-color: #888
+  color: initial
+  border-color: initial
+  outline: 2px solid $turquoise
+  outline-offset: 4px
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,
@@ -26,7 +30,7 @@ input[type="reset"].button-primary,
 input[type="button"].button-primary
   color: black
   background-color: white
-  border: 4px groove #528E73
+  border: 4px groove $sea-green
   height: auto
 .button.button-primary:hover,
 button.button-primary:hover,
@@ -39,5 +43,5 @@ input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus
   color: black
-  background-color: #E8B233
-  border-color: #6DA0FF
+  background-color: white
+  border: 4px groove $sea-green
