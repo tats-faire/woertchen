@@ -14,11 +14,10 @@
         <span></span>
       </label>
     </div>
-
     <ul class="nav-links">
       @for (route of routes; track route.title) {
-        <li>
-          <a id="nav-{{route.title}}" [routerLink]="route.path" [class]="{'currentPage' : (route.title == currentPageTitle)}">
+        <li [class]="{'currentPage' : (route.title == currentPageTitle())}">
+          <a id="nav-{{route.title}}" [routerLink]="route.path">
             {{route.title}}
           </a>
         </li>
