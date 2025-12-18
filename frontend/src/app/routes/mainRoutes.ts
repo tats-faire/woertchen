@@ -6,17 +6,20 @@ import {SavedPhrasesPage} from './saved-phrases-page/saved-phrases-page';
 
 const landingPage = {
   path: '',
-  component: LandingPage
+  component: LandingPage,
+  title: 'start'
 }
 
 const generationPage = {
   path: 'generate',
-  component: GenerationPage
+  component: GenerationPage,
+  title: 'Generieren'
 }
 
 const savedPhrasesPage = {
   path: 'saved',
-  component: SavedPhrasesPage
+  component: SavedPhrasesPage,
+  title: 'Meine Phrasen'
 }
 
 export const routes : Routes = [

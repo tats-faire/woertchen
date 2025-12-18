@@ -1,0 +1,28 @@
+<nav>
+  <div id="logo-frame">
+    <img id="logo"
+         src="https://assets.codepen.io/10936164/internal/avatars/users/default.png?fit=crop&format=auto&height=512&version=1700504404&width=512"
+         alt="">
+    <h1 id="title">Wörtchen</h1>
+  </div>
+  <div id="nav-items">
+    <input type="checkbox" id="nav-check"/>
+    <div class="nav-icon">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+
+    <ul class="nav-links">
+      @for (route of routes; track route.title) {
+        <li>
+          <a id="nav-{{route.title}}" [routerLink]="route.path" [class]="{'currentPage' : (route.title == currentPageTitle)}">
+            {{route.title}}
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</nav>
