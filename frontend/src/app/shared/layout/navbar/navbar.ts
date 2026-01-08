@@ -1,11 +1,13 @@
 import {Component, input} from '@angular/core';
 import {RouterLink, Routes} from '@angular/router';
 import {routes} from '../../../routes/mainRoutes';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   imports: [
-    RouterLink
+    RouterLink,
+    NgOptimizedImage
   ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.sass',
@@ -13,5 +15,4 @@ import {routes} from '../../../routes/mainRoutes';
 export class Navbar {
   currentPageTitle = input<string>()
   routes: Routes = routes;
-
 }
