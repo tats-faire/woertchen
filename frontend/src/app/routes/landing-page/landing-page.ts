@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {RandomPhraseApiService} from '../../shared/api/random-phrase-api.service';
 import {RouterLink} from '@angular/router';
+import {ChainContainer} from '../../shared/components/chain-container/chain-container';
 
 @Component({
   selector: 'app-landing-page',
   imports: [
-    RouterLink
+    RouterLink,
+    ChainContainer
   ],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.sass',

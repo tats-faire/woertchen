@@ -1,5 +1,30 @@
 <app-navbar [currentPageTitle]="'Generieren'"/>
-<div>
 
+@if (isSettingsDialogOpen) {
+  <app-settings-dialog [numberOfChains]="this.numberOfChains" [numberOfPhrasesPerChain]="this.numberOfPhrasesPerChain">
+  </app-settings-dialog>
+}
+
+<div>
+  <button class="button-icon" (click)="initChains()">
+    <img src="icons/reload.svg"
+         height="38px" width="38px"
+         alt="Reload Phrases">
+  </button>
+  <button class="button-icon" (click)="onToggleSettings()">
+    <img src="/icons/chevron.svg"
+         height="38px" width="38px"
+         alt="Phrase Settings">
+  </button>
 </div>
-<p>generation-page works!</p>
+
+<p>Deine zufallsgenerierten Phrasenketten:</p>
+<div id="chainWrapper">
+  @if (generatedChains) {
+    @for (chain of generatedChains; track $index) {
+      <app-chain-container [chain]="chain"/>
+    }
+  } @else {
+    <p>Lädt...</p>
+  }
+</div>
