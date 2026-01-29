@@ -1,30 +1,43 @@
 <app-navbar [currentPageTitle]="'Generieren'"/>
 
 @if (isSettingsDialogOpen) {
-  <app-settings-dialog [numberOfChains]="this.numberOfChains" [numberOfPhrasesPerChain]="this.numberOfPhrasesPerChain">
+  <app-settings-dialog [(phraseNums)]="phraseNums"
+                       (onClose)="onToggleSettings()">
   </app-settings-dialog>
 }
 
-<div>
-  <button class="button-icon" (click)="initChains()">
-    <img src="icons/reload.svg"
-         height="38px" width="38px"
-         alt="Reload Phrases">
-  </button>
-  <button class="button-icon" (click)="onToggleSettings()">
-    <img src="/icons/chevron.svg"
-         height="38px" width="38px"
-         alt="Phrase Settings">
-  </button>
-</div>
+<div id="content-box">
+  <div id="settings-box">
+    <div id="layout-helper"></div>
+    <div id="center-buttons">
+      <button class="button-icon" (click)="initChains()">
+        <img src="icons/reload.svg"
+             height="38px" width="38px"
+             alt="Reload Phrases">
+      </button>
+      <button class="button-icon" (click)="onToggleSettings()">
+        <img src="/icons/chevron.svg"
+             height="38px" width="38px"
+             alt="Phrase Settings">
+      </button>
+    </div>
+    <button class="button-icon">
+      <a [href]="downloadJsonHref" download="phrasenketten.json">
+        <img src="/icons/download.svg"
+             height="38px" width="38px"
+             alt="Phrase Settings">
+      </a>
+    </button>
+  </div>
 
-<p>Deine zufallsgenerierten Phrasenketten:</p>
-<div id="chainWrapper">
-  @if (generatedChains) {
-    @for (chain of generatedChains; track $index) {
-      <app-chain-container [chain]="chain"/>
+  <p>Deine zufallsgenerierten Phrasenketten:</p>
+  <div id="chainWrapper">
+    @if (generatedChains) {
+      @for (chain of generatedChains; track $index) {
+        <app-chain-container [chain]="chain"/>
+      }
+    } @else {
+      <p>Lädt...</p>
     }
-  } @else {
-    <p>Lädt...</p>
-  }
+  </div>
 </div>

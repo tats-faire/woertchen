@@ -1,5 +1,6 @@
-import {Component, input, model, output} from '@angular/core';
+import {Component, input, model, ModelSignal, output} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {phraseNumsModel} from '../generation-page';
 
 @Component({
   selector: 'app-settings-dialog',
@@ -10,15 +11,19 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './settings-dialog.sass',
 })
 export class SettingsDialog {
-  // numberOfChains = input.required<number>();
-  // numberOfPhrasesPerChain = input.required<number>();
-  //
-  // numberOfChainsUpdated = output<number>();
-  // numberOfPhrasesPerChainUpdated = output<number>();
-  numberOfChains = model.required<number>();
-  numberOfPhrasesPerChain = model.required<number>();
+  phraseNums: ModelSignal<phraseNumsModel> = model.required<phraseNumsModel>();
 
-  onSubmit() {
-    // numberOfChainsUpdated.emit(numberOfChains())
+  newNumberOfChains: number = 6;
+  newNumberOfPhrasesPerChain = 5;
+  onClose = output<void>();
+  success = false;
+
+  onSubmitForm() {
+    this.phraseNums.set({
+      numberOfChains: this.newNumberOfChains,
+      numberOfPhrasesPerChain: this.newNumberOfPhrasesPerChain
+    });
+    this.success = true;
+    setTimeout(()=> { this.onClose.emit()}, 3000);
   }
 }
