@@ -18,7 +18,7 @@
     <ul class="nav-links">
       @for (route of routes; track route.title) {
         <li>
-          <button id="nav-{{route.title}}" [routerLink]="route.path" [class]="'three-d-button ' + {'currentPage' : (route.title == currentPageTitle())}">
+          <button id="nav-{{route.title}}" [routerLink]="'/' + route.path" class="three-d-button" [class.currentPage]="route.title == currentPageTitle()">
             {{route.title}}
           </button>
         </li>
