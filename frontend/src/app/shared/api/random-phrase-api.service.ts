@@ -20,14 +20,14 @@ export class RandomPhraseApiService {
   }
 
   getRandomPhrases(numberOfPhrases: number): Observable<string[]> {
-    return this.http.get<string[]>(`https://random-word-api.herokuapp.com/word?number=${numberOfPhrases}&lang=de`)
+    return this.http.get<string[]>(`/api/word?number=${numberOfPhrases}&lang=de`)
   }
 
   getArrayOfPhrases(numberOfChains: number, numberOfPhrasesPerChain: number) {
     const totalPhrases = numberOfChains * numberOfPhrasesPerChain
 
-    return this.http.get<string[]>(`https://random-word-api.herokuapp.com/word?number=${totalPhrases}&lang=de`).pipe(
-      map((response) => this.splitArray(response, numberOfPhrasesPerChain)),
+    return this.http.get<string[]>(`/api/word?number=${totalPhrases}&lang=de`).pipe(
+      map((response) => this.splitArray(response, numberOfPhrasesPerChain, numberOfChains)),
 
       catchError((error) => {
         console.error(error);
