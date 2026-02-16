@@ -17,10 +17,10 @@
     </div>
     <ul class="nav-links">
       @for (route of routes; track route.title) {
-        <li [class]="{'currentPage' : (route.title == currentPageTitle())}">
-          <a id="nav-{{route.title}}" [routerLink]="route.path">
+        <li>
+          <button id="nav-{{route.title}}" [routerLink]="route.path" [class]="'three-d-button ' + {'currentPage' : (route.title == currentPageTitle())}">
             {{route.title}}
-          </a>
+          </button>
         </li>
       }
     </ul>

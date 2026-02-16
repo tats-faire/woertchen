@@ -1,5 +1,33 @@
 @use 'colors' as *
 
+.three-d-button
+  height: auto
+  margin-bottom: 1.25rem
+  list-style-type: none
+  width: fit-content
+  text-align: center
+  border: 6px outset $yellow
+  background-color: $yellow
+  border-radius: 5px
+  padding: 0.25rem 0.85rem
+  display: block
+  letter-spacing: 1.5px
+  font-weight: bold
+  line-height: 2
+  overflow: hidden
+  color: black
+  font-size: 21px
+
+.three-d-button:hover
+  filter: brightness(110%)
+
+.three-d-button:active
+  border-bottom-width: 4px
+
+.three-d-button:focus
+  border-color: $yellow
+  outline: 2px solid $orange
+
 .button,
 button,
 input[type="submit"],
