@@ -22,9 +22,7 @@ export interface phraseNumsModel {
 })
 export class GenerationPage implements OnInit {
   generatedChains: string[] = []
-  numberOfPhrasesPerChain: number = 5;
-  numberOfChains: number = 6;
-  phraseNums: ModelSignal<phraseNumsModel> = model({numberOfChains: this.numberOfChains, numberOfPhrasesPerChain: this.numberOfPhrasesPerChain});
+  phraseNums: ModelSignal<phraseNumsModel> = model({numberOfChains: 5, numberOfPhrasesPerChain: 6});
   isSettingsDialogOpen: boolean = false;
   downloadJsonHref: SafeUrl | undefined;
 
@@ -32,16 +30,14 @@ export class GenerationPage implements OnInit {
 
   ngOnInit() {
     this.initChains()
-    setTimeout(()=> {
+    setTimeout(() => {
       this.downloadJsonHref = this.generateDownloadJsonUri();
     }, 1000);
 
-    this.phraseNums.subscribe(newValue => {
-      this.numberOfChains = newValue.numberOfChains;
-      this.numberOfPhrasesPerChain = newValue.numberOfPhrasesPerChain;
+    this.phraseNums.subscribe(_ => {
       this.initChains();
 
-      setTimeout(()=> {
+      setTimeout(() => {
         this.downloadJsonHref = this.generateDownloadJsonUri();
       }, 1000);
     });
@@ -50,9 +46,9 @@ export class GenerationPage implements OnInit {
   initChains() {
     this.generatedChains = []
 
-    this.randomPhraseApiService.getArrayOfPhrases(this.numberOfChains, this.numberOfPhrasesPerChain).subscribe({
+    this.randomPhraseApiService.getArrayOfPhrases(this.phraseNums().numberOfChains, this.phraseNums().numberOfPhrasesPerChain).subscribe({
       next: (data: string[][]) => {
-        for (let i = 0; i < this.numberOfChains; i++) {
+        for (let i = 0; i < this.phraseNums().numberOfChains; i++) {
           this.generatedChains![i] = data[i].join("-")
         }
       },
@@ -68,7 +64,7 @@ export class GenerationPage implements OnInit {
 
   generateDownloadJsonUri() {
     const jsonObject = JSON.stringify(
-      this.generatedChains.map(function(s: string) {
+      this.generatedChains.map(function (s: string) {
         return {chain: s}
       })
     );

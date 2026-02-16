@@ -8,17 +8,6 @@ import {catchError, concatAll, firstValueFrom, map, Observable, of} from 'rxjs';
 export class RandomPhraseApiService {
   constructor(private http: HttpClient) { }
 
-  transform() {
-    return this.getRandomPhrases(4).subscribe({
-      next: (data) => {
-        return data.join("-")
-      },
-      error: (error) => {
-        console.log(error)
-      }
-    })
-  }
-
   getRandomPhrases(numberOfPhrases: number): Observable<string[]> {
     return this.http.get<string[]>(`/api/word?number=${numberOfPhrases}&lang=de`)
   }
@@ -36,10 +25,17 @@ export class RandomPhraseApiService {
     );
   }
 
-  splitArray(array: string[], splitIndex: number) {
-    const result = [];
-    for (let i = 0; i < array.length; i += splitIndex) {
-      result.push(array.slice(i, i + splitIndex));
+  splitArray(array: string[], splitIndex: number, cols: number) {
+    let result = [];
+
+    // init array
+    for ( let i = 0; i < cols; i++ ) {
+      result[i] = [];
+    }
+
+    // fill chains
+    for (let i = 0, j = 0; i < array.length; i += splitIndex, j++) {
+      result[j] = (array.slice(i, i + splitIndex));
     }
     return result;
   }

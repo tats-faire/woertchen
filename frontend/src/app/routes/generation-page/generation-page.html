@@ -1,7 +1,7 @@
 <app-navbar [currentPageTitle]="'Generieren'"/>
 
 @if (isSettingsDialogOpen) {
-  <app-settings-dialog [(phraseNums)]="phraseNums"
+  <app-settings-dialog [(phraseNumsInput)]="phraseNums"
                        (onClose)="onToggleSettings()">
   </app-settings-dialog>
 }

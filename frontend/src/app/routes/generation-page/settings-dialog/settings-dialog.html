@@ -1,26 +1,33 @@
-<form (ngSubmit)="onSubmitForm()">
-  <button class="button-icon" (click)="onClose.emit()">
+<div class="dialog">
+  <button class="button-icon close-button" (click)="onClose.emit()">
     <img src="icons/close.svg"
          height="26px" width="26px"
          alt="Reload Phrases">
   </button>
-  <h2>Generiere neue Phrasen mit geänderten Parametern</h2>
-  <div class="input-box">
-    <label>
-      <p>Anzahl der generierten Phrasenketten:</p>
-      <input name="Anzahl Phrasenketten" [(ngModel)]="newNumberOfChains" min="1" max="10"/>
-    </label>
-    <label>
-      <p>Anzahl der Phrasen pro Phrasenkette:</p>
-      <input name="Anzahl Phrasen pro Kette" [(ngModel)]="newNumberOfPhrasesPerChain" min="1" max="10"/>
-    </label>
-  </div>
-  <div id="message-box">
-    @if (success) {
-      <p>Erfolg! Moment bitte...</p>
-    }
-  </div>
-  <button type="submit">
-    Bestätigen
-  </button>
-</form>
+  <form (submit)="onSubmitForm($event)">
+    <h2>Generiere neue Phrasen mit geänderten Parametern</h2>
+    <div class="input-box">
+      <label>
+        <p>Anzahl der generierten Phrasenketten:</p>
+        <input type="number" [formField]="phraseSettingsForm.numberOfChains"/>
+      </label>
+      <label>
+        <p>Anzahl der Phrasen pro Phrasenkette:</p>
+        <input type="number" [formField]="phraseSettingsForm.numberOfPhrasesPerChain"/>
+      </label>
+    </div>
+    <div id="message-box">
+      @if (success) {
+        <p>Erfolg! Moment bitte...</p>
+      }
+      @if (phraseSettingsForm().invalid() && phraseSettingsForm().touched()) {
+        @for (error of phraseSettingsForm().errors(); track error.kind) {
+          <p>{{ error.message }}</p>
+        }
+      }
+    </div>
+    <button type="submit" [disabled]="phraseSettingsForm().invalid()">
+      Bestätigen
+    </button>
+  </form>
+</div>
