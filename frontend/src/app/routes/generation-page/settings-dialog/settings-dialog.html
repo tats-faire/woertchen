@@ -20,8 +20,13 @@
       @if (success) {
         <p>Erfolg! Moment bitte...</p>
       }
-      @if (phraseSettingsForm().invalid() && phraseSettingsForm().touched()) {
-        @for (error of phraseSettingsForm().errors(); track error.kind) {
+      @else if (phraseSettingsForm.numberOfChains().invalid()) {
+        @for (error of phraseSettingsForm.numberOfChains().errors(); track error.kind) {
+          <p>{{ error.message }}</p>
+        }
+      }
+      @else if (phraseSettingsForm.numberOfPhrasesPerChain().invalid()) {
+        @for (error of phraseSettingsForm.numberOfPhrasesPerChain().errors(); track error.kind) {
           <p>{{ error.message }}</p>
         }
       }

@@ -28,11 +28,11 @@ export class SettingsDialog implements OnInit {
 
   phraseSettingsForm = form(this.phraseNumsForm, (fieldPath) => {
     required(fieldPath.numberOfChains, {message: 'Anzahl der generierten Phrasenketten muss angegeben werden'});
-    min(fieldPath.numberOfChains, 1, {message: 'Es muss eine Zahl zwischen 1 und 1ß angegeben werden'});
-    max(fieldPath.numberOfChains, 10, {message: 'Es muss eine Zahl zwischen 1 und 1ß angegeben werden'});
+    min(fieldPath.numberOfChains, 1, {message: 'Es muss eine Zahl zwischen 1 und 10 angegeben werden'});
+    max(fieldPath.numberOfChains, 10, {message: 'Es muss eine Zahl zwischen 1 und 10 angegeben werden'});
     required(fieldPath.numberOfPhrasesPerChain, {message: 'Anzahl der Phrasen pro Phrasenkette muss angegeben werden'});
-    min(fieldPath.numberOfPhrasesPerChain, 1, {message: 'Es muss eine Zahl zwischen 1 und 1ß angegeben werden'});
-    max(fieldPath.numberOfPhrasesPerChain, 10, {message: 'Es muss eine Zahl zwischen 1 und 1ß angegeben werden'});
+    min(fieldPath.numberOfPhrasesPerChain, 1, {message: 'Es muss eine Zahl zwischen 1 und 10 angegeben werden'});
+    max(fieldPath.numberOfPhrasesPerChain, 10, {message: 'Es muss eine Zahl zwischen 1 und 10 angegeben werden'});
   });
 
   onSubmitForm(event: Event) {
