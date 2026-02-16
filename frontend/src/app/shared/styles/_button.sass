@@ -18,22 +18,27 @@
   color: black
   font-size: 21px
 
-.three-d-button:hover
+.three-d-button:hover:enabled
   filter: brightness(110%)
 
-.three-d-button:active
+.three-d-button:active:enabled
   border-bottom-width: 4px
 
 .three-d-button:focus
   border-color: $yellow
   outline: 2px solid $orange
 
+.three-d-button:disabled
+  background-color: $grey
+  border-color: $dark-grey
+  color: $light-grey
+
 .button,
 button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"]
-  color: #555
+  color: $grey
   background-color: transparent
   border-radius: 4px
   border: 1px solid #bbb
@@ -73,3 +78,4 @@ button.button-icon
   height: 38px
   width: 38px
   padding: 0
+  border: none
