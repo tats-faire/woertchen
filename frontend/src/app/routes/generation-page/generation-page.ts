@@ -30,16 +30,10 @@ export class GenerationPage implements OnInit {
 
   ngOnInit() {
     this.initChains()
-    setTimeout(() => {
-      this.downloadJsonHref = this.generateDownloadJsonUri();
-    }, 1000);
 
+    // if the phraseNums model changes (from user settings), initialize chains again
     this.phraseNums.subscribe(_ => {
       this.initChains();
-
-      setTimeout(() => {
-        this.downloadJsonHref = this.generateDownloadJsonUri();
-      }, 1000);
     });
   }
 
@@ -52,6 +46,10 @@ export class GenerationPage implements OnInit {
           this.generatedChains![i] = data[i].join("-")
         }
       },
+      // initialise json export once chains are complete
+      complete: () => {
+        this.downloadJsonHref = this.generateDownloadJsonUri();
+      },
       error: (error) => {
         console.log(error)
       }
@@ -63,13 +61,12 @@ export class GenerationPage implements OnInit {
   }
 
   generateDownloadJsonUri() {
-    const jsonObject = JSON.stringify(
-      this.generatedChains.map(function (s: string) {
-        return {chain: s}
-      })
-    );
+    const chainsObject = {
+      Phrasenketten: this.generatedChains
+    };
 
-    console.warn(jsonObject)
-    return this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(jsonObject));
+    const json = JSON.stringify({ ...chainsObject });
+
+    return this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(json));
   }
 }
