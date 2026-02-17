@@ -1,0 +1,38 @@
+<div class="dialog">
+  <button class="button-icon close-button" (click)="onClose.emit()">
+    <img src="icons/close.svg"
+         height="26px" width="26px"
+         alt="Reload Phrases">
+  </button>
+  <form (submit)="onSubmitForm($event)">
+    <h2>Generiere neue Phrasen mit geänderten Parametern</h2>
+    <div class="input-box">
+      <label>
+        <p>Anzahl der generierten Phrasenketten:</p>
+        <input type="number" [formField]="phraseSettingsForm.numberOfChains"/>
+      </label>
+      <label>
+        <p>Anzahl der Phrasen pro Phrasenkette:</p>
+        <input type="number" [formField]="phraseSettingsForm.numberOfPhrasesPerChain"/>
+      </label>
+    </div>
+    <div id="message-box">
+      @if (success) {
+        <p>Erfolg! Moment bitte...</p>
+      }
+      @else if (phraseSettingsForm.numberOfChains().invalid()) {
+        @for (error of phraseSettingsForm.numberOfChains().errors(); track error.kind) {
+          <p>{{ error.message }}</p>
+        }
+      }
+      @else if (phraseSettingsForm.numberOfPhrasesPerChain().invalid()) {
+        @for (error of phraseSettingsForm.numberOfPhrasesPerChain().errors(); track error.kind) {
+          <p>{{ error.message }}</p>
+        }
+      }
+    </div>
+    <button class="three-d-button" type="submit" [disabled]="phraseSettingsForm().invalid()">
+      Bestätigen
+    </button>
+  </form>
+</div>

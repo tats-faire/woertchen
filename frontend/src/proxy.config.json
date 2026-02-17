@@ -1,0 +1,8 @@
+{
+  "/api/**": {
+    "target": "https://random-word-api.herokuapp.com",
+    "secure": true,
+    "pathRewrite": {"^/api": ""},
+    "changeOrigin": true
+  }
+}

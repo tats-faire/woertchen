@@ -1,13 +1,11 @@
 import {Component, input} from '@angular/core';
 import {RouterLink, Routes} from '@angular/router';
 import {routes} from '../../../routes/mainRoutes';
-import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   imports: [
-    RouterLink,
-    NgOptimizedImage
+    RouterLink
   ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.sass',
