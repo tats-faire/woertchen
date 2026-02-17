@@ -1,10 +1,10 @@
 # Woertchen
 
-Eine Webapp zum Generieren, Speichern und Exportieren von zufallsgenerierten (deutschen) Phrasenketten.
+Eine Webapp zum Generieren, Speichern und Exportieren von zufallsgenerierten (deutschsprachigen) Phrasenketten.
 
 ## Tech Stack
 
-Angular 
+Angular v21, SASS (indented syntax)
 
 ## Development server
 
