@@ -26,15 +26,19 @@ jobs:
         with:
           node-version: '24'
           cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
 
       - name: Install Dependencies
         run: npm ci
+        working-directory: frontend
 
       - name: Build Angular App
         run: npm run build -- --configuration production --base-href /${{ github.event.repository.name }}/
+        working-directory: frontend
 
       - name: Add .nojekyll file
-        run: touch ./dist/woertchen/browser/.nojekyll
+        run: touch ./dist/frontend/browser/.nojekyll
+        working-directory: frontend
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -42,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist/woertchen/browser'
+          path: './frontend/dist/frontend/browser'
 
   deploy:
     environment:
