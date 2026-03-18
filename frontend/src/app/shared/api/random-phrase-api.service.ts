@@ -10,13 +10,13 @@ export class RandomPhraseApiService {
   constructor(private http: HttpClient) { }
 
   getRandomPhrases(numberOfPhrases: number): Observable<string[]> {
-    return this.http.get<string[]>(`${environment.apiUrl}/api/word?number=${numberOfPhrases}&lang=de`)
+    return this.http.get<string[]>(`${environment.apiUrl}/word?number=${numberOfPhrases}&lang=de`)
   }
 
   getArrayOfPhrases(numberOfChains: number, numberOfPhrasesPerChain: number) {
     const totalPhrases = numberOfChains * numberOfPhrasesPerChain
 
-    return this.http.get<string[]>(`${environment.apiUrl}/api/word?number=${totalPhrases}&lang=de`).pipe(
+    return this.http.get<string[]>(`${environment.apiUrl}/word?number=${totalPhrases}&lang=de`).pipe(
       map((response) => this.splitArray(response, numberOfPhrasesPerChain, numberOfChains)),
 
       catchError((error) => {
